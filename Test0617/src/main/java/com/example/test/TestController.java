@@ -21,17 +21,17 @@ public class TestController {
 		return "index";
 	}
 	
-	@RequestMapping("/cal{num}/{operation}/{num1}")
+	@RequestMapping("/{num}/{operation}/{num1}")
 	public String index2(@PathVariable int num,@PathVariable int num1,@PathVariable String operation, Model model) {
 		int cal = 0;
-		if(operation.equals("+")) {
+		if(operation.equals("add")) {
 			cal = num + num1;
-		}else if(operation.equals("-")) {
+		}else if(operation.equals("sub")) {
 			cal = num - num1;
-		}else if(operation.equals("/")) {
-			cal = num / num1;
-		}else if(operation.equals("*")) {
+		}else if(operation.equals("mul")) {
 			cal = num * num1;
+		}else if(operation.equals("div")) {
+			cal = num / num1;
 		}
 		model.addAttribute("msg", "num : " + cal);
 		return "index";
