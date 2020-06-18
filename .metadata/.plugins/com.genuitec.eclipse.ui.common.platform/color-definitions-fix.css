@@ -2306,6 +2306,7 @@ IEclipsePreferences#org-eclipse-ui-workbench {
 		'org.eclipse.wst.jsdt.ui.typeArgumentHighlighting=255,255,0'
 		'org.eclipse.wst.jsdt.ui.typeParameterHighlighting=247,173,123'
 		'org.eclipse.wst.jsdt.ui.typeVariableDeclarationHighlighting=247,173,123'
+		'org.springframework.tooling.ls.eclipse.commons.STS4BootMarkerIndicationColor=54,81,25'
 		'piBorder=0,254,254'
 		'tagAttributeName=255,0,255'
 		'tagAttributeValue=212,0,255'
