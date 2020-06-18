@@ -37,6 +37,7 @@ public class TestController {
 		return "index";
 	}
 	
+
 	
 	@RequestMapping("/add")
 	public String add(@RequestParam("num1") int num1, @RequestParam("num2") int num2, Model model) {
