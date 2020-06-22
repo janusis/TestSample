@@ -222,7 +222,6 @@ html, body {
 <script>
 
 	function searchDate() {
-
 		alert("조회합니다.");
 		search.submit();
 	}
