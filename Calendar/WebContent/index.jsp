@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, model.*"%>
 <%
-	String start_date = "20200620";
-	String end_date = "20200715";
+	String start_date = "";
+	String end_date = "";
 	int year = 0;
 	String month_name = "";
 	int nowpage = 1;
@@ -24,13 +24,11 @@
 		weekdatelist = calendardao.getWeekDate(datelist);
 		year = weekdatelist.get(nowpage-1).getYear();
 		month_name = weekdatelist.get(nowpage-1).getMonth_name();
+		pageskip = calendardao.pageList(nowpage, start_date, end_date);
 	}
 	
-	datelist = calendardao.dateList(start_date, end_date);
-	weekdatelist = calendardao.getWeekDate(datelist);
-	year = weekdatelist.get(nowpage-1).getYear();
-	month_name = weekdatelist.get(nowpage-1).getMonth_name();
-	pageskip = calendardao.pageList(nowpage, start_date, end_date);
+	
+	
 	
 %>
 <!DOCTYPE html>
@@ -224,9 +222,12 @@ html, body {
 <script>
 
 	function searchDate() {
-		alert("submit");
+
+		alert("조회합니다.");
 		search.submit();
 	}
+	
+	
 
 	function count_ckeck(object) {
 		var check = document.getElementsByName("check");
@@ -245,7 +246,5 @@ html, body {
 			object.checked = false;
 			return false;
 		}
-		
-		
 	}
 </script>
