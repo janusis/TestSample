@@ -35,9 +35,10 @@ public class CalendarDAO {
 
 		boolean flag = true;
 		while (flag) {
-
+			//해당 연도에 따른 월별 마지막 날짜 배열
 			monthdate(year, monthset);
-
+			
+					//마지막 날짜
 			maxdate = setMaxDate(endyear, endmonth, enddate, year, month, monthset);
 
 			for (date = startdate; date <= maxdate; date++) {
@@ -88,10 +89,8 @@ public class CalendarDAO {
 				datevo.setYear(year);
 
 				datelist.add(datevo);
-				/*
-				 * System.out.println(datevo.getSample_date() + " : " + datevo.getSample_day() +
-				 * "  " + "  ##  " + datevo.getYear() + " " + datevo.getMonth());
-				 */
+				
+				
 				if (day == 6) {
 					day = 0;
 				} else {
