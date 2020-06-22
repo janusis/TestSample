@@ -228,7 +228,10 @@ public class CalendarDAO {
 					default:
 						break;
 					}
-
+					if(listcount+1 == datelist.size()) {
+						flag = false;
+						break;
+					}
 					if (date > Integer.parseInt((datelist.get(listcount + 1).getSample_date() + "").substring(6, 8))) {
 						flag = false;
 						break;
