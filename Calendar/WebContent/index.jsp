@@ -139,7 +139,6 @@ html, body {
 					<th>SAT</th>
 				</tr>
 				<%
-					int i = 0;
 					if(weekdatelist.size()>0){
 						for (DateVO vo : weekdatelist) {
 				%>
