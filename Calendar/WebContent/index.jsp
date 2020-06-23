@@ -220,7 +220,8 @@ html, body {
 		</div>
 		<div>
 			<form name="" method="" action="">
-				<p id="date">0000년 00월 00일</p>
+				<p id="date">0000년 00월 00일 <br>
+				날짜 클릭 시 해당 날짜 출력은 아직 구현이 안됐습니다ㅜ</p>
 				<input type="hidden" name="start_date" value="">
 				<input type="hidden" name="end_date" value="">
 				<input type="hidden" name="nowpage" value="">
@@ -237,6 +238,9 @@ html, body {
 
 	<div class="body-right">
 		<table class="list">
+			<tr>
+				<th colspan="3">날짜 리스트 구현이 아직 안됐습니다ㅜ</th>
+			</tr>
 			<tr>
 				<th>일자</th>
 				<th>요일</th>
