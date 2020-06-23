@@ -9,6 +9,7 @@ public class DateVO {
 	private int month;
 	private String month_name;
 	private int weeknumber;
+	private int startweeknumber;
 	private int sunday;
 	private int monday;
 	private int tuesday;
@@ -44,8 +45,12 @@ public class DateVO {
 	public void setWeeknumber(int weeknumber) {
 		this.weeknumber = weeknumber;
 	}
-	
-	
+	public int getStartweeknumber() {
+		return startweeknumber;
+	}
+	public void setStartweeknumber(int startweeknumber) {
+		this.startweeknumber = startweeknumber;
+	}
 	public int getMonth() {
 		return month;
 	}

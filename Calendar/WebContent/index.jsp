@@ -2,33 +2,69 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, model.*"%>
 <%
+	int year = 2020;
+	String month_name = "June";
+	int nowpage = 1; 
 	String start_date = "";
 	String end_date = "";
-	int year = 0;
-	String month_name = "";
-	int nowpage = 1;
+	String nowyearmonth = "";
+	String startmonthdate = "";
+	String endmonthdate = "";
 	String pageskip = "";
+	int weeknumber = 1;
 	
 	CalendarDAO calendardao = new CalendarDAO();
 	List<DateVO> datelist = new ArrayList<DateVO>();
 	List<DateVO> weekdatelist = new ArrayList<DateVO>();
-	if (request.getParameter("nowpage") != null) {
-		nowpage = Integer.parseInt(request.getParameter("nowpage"));
+	if (request.getParameter("start_date") != null || start_date != "") {
+		start_date = request.getParameter("start_date").replace("-","");
 	}
-	if (request.getParameter("start_date") != null) {
-		start_date = request.getParameter("start_date");
+	if (request.getParameter("end_date") != null || end_date != "") {
+		end_date = request.getParameter("end_date").replace("-","");
+		
+		if((request.getParameter("startmonthdate") != null || startmonthdate != "")
+				&& request.getParameter("endmonthdate") != null || endmonthdate != ""){
+			startmonthdate = request.getParameter("startmonthdate");
+			endmonthdate = request.getParameter("endmonthdate");
+			datelist =  calendardao.dateList(startmonthdate, endmonthdate);
+			weekdatelist = calendardao.getWeekDate(datelist);
+			year = weekdatelist.get(weeknumber-1).getYear();
+			month_name = weekdatelist.get(weeknumber-1).getMonth_name();
+			weeknumber = weekdatelist.get(weeknumber-1).getStartweeknumber();
+		}else if(request.getParameter("startmonthdate") != null && request.getParameter("endmonthdate") == null){
+			startmonthdate = request.getParameter("startmonthdate");
+			datelist =  calendardao.dateList(startmonthdate, end_date);
+			weekdatelist = calendardao.getWeekDate(datelist);
+			year = weekdatelist.get(weeknumber-1).getYear();
+			month_name = weekdatelist.get(weeknumber-1).getMonth_name();
+			weeknumber = weekdatelist.get(weeknumber-1).getStartweeknumber();
+		}else if(request.getParameter("startmonthdate") == null && request.getParameter("endmonthdate") != null){
+			endmonthdate = request.getParameter("endmonthdate");
+			datelist =  calendardao.dateList(start_date, endmonthdate);
+			weekdatelist = calendardao.getWeekDate(datelist);
+			year = weekdatelist.get(weeknumber-1).getYear();
+			month_name = weekdatelist.get(weeknumber-1).getMonth_name();
+			weeknumber = weekdatelist.get(weeknumber-1).getStartweeknumber();
+		}else if(request.getParameter("startmonthdate") == null && request.getParameter("endmonthdate") == null){
+			datelist =  calendardao.dateList(start_date, end_date);
+			weekdatelist = calendardao.getWeekDate(datelist);
+			year = weekdatelist.get(weeknumber-1).getYear();
+			month_name = weekdatelist.get(weeknumber-1).getMonth_name();
+			weeknumber = weekdatelist.get(weeknumber-1).getStartweeknumber();
+		}
+		
+		nowyearmonth = start_date.substring(0,6);
+		
+		if (request.getParameter("nowyearmonth") != null) {
+			nowyearmonth = request.getParameter("nowyearmonth");
+		}
+		if (request.getParameter("nowpage") != null) {
+			nowpage = Integer.parseInt(request.getParameter("nowpage"));
+		}
+		pageskip = calendardao.pageList(nowpage, start_date, end_date, nowyearmonth);
+	}else {
+		pageskip = calendardao.pageList();
 	}
-	if (request.getParameter("end_date") != null) {
-		end_date = request.getParameter("end_date");
-		datelist =  calendardao.dateList(start_date, end_date);
-		weekdatelist = calendardao.getWeekDate(datelist);
-		year = weekdatelist.get(nowpage-1).getYear();
-		month_name = weekdatelist.get(nowpage-1).getMonth_name();
-		pageskip = calendardao.pageList(nowpage, start_date, end_date);
-	}
-	
-	
-	
 	
 %>
 <!DOCTYPE html>
@@ -121,8 +157,8 @@ html, body {
 			<form name="search" method="post" action="index.jsp">
 				&nbsp;&nbsp; 
 				<input type="" value="기간" readOnly> 
-				<input type="date" name="start_date"> ~ 
-				<input type="date" name="end_date">&nbsp;&nbsp;
+				<input type="date" name="start_date" min="1900-01-01" required pattern="\d{4}-\d{2}-\d{2}"> ~ 
+				<input type="date" name="end_date" max="2100-12-31" required pattern="\d{4}-\d{2}-\d{2}">&nbsp;&nbsp;
 				<input type="button" value="조회" id="button" onClick="searchDate();">
 			</form>
 			<div class="title">
@@ -154,9 +190,21 @@ html, body {
 				</tr>
 				<%
 						}
+						for(int weekcount = weekdatelist.size(); weekcount<5 ; weekcount++){
+				%>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<%
+						}
 					}else {
 						for(int x=0; x<5; x++){
-						
 				%>
 				<tr>
 					<td></td>
@@ -184,9 +232,13 @@ html, body {
 		</div>
 		<div>
 			<form name="" method="" action="">
-				<span id="selected_start_date"/>
-				<span id="selected_end_date"/>
 				<p id="date">0000년 00월 00일</p>
+				<input type="hidden" name="start_date" value="" onclick="">
+				<input type="hidden" name="end_date" value="" onclick="">
+				<input type="hidden" name="nowpage" value="" onclick="">
+				<input type="hidden" name="nowyearmonth" value="" onclick="">
+				<input type="hidden" name="startmonthdate" value="" onclick="">
+				<input type="hidden" name="endmonthdate" value="" onclick="">
 				<input type="button" value="적용" onclick="" id="button">
 			</form>
 		</div>
@@ -221,6 +273,22 @@ html, body {
 <script>
 
 	function searchDate() {
+		var date_pattern = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/; 
+		if(!date_pattern.test(search.start_date.value)){
+			alert("시작 날짜를 다시 입력해주세요.");
+			return;
+		}
+
+		if(!date_pattern.test(search.end_date.value)){
+			alert("종료 날짜를 다시 입력해주세요.");
+			return;
+		}
+		var startdate = search.start_date.value.replace("-","");
+		var enddate = search.end_date.value.replace("-","");
+		if(startdate > enddate){
+			alert("날짜 범위가 잘못되었습니다.");
+			return;
+		}
 		alert("조회합니다.");
 		search.submit();
 	}
