@@ -45,7 +45,6 @@ public class CalendarDAO {
 		return previousyearmonth;
 	}
 	
-	
 	//다음년월 계산
 	public String getNextYearMonth(int nowpage, String nowyearmonth) {
 		String nextyearmonth = nowyearmonth;
@@ -65,8 +64,6 @@ public class CalendarDAO {
 		}
 		return nextyearmonth;
 	}
-
-	
 	
 	//전달 다음달 버튼 출력
 	public String pageList(int nowpage, String start_date, String end_date, String nowyearmonth) {
@@ -95,13 +92,11 @@ public class CalendarDAO {
 				} else {
 					startyearmonthvalue = Integer.parseInt(startyearvalue + "" + startmonthvalue);
 				}
-
 			} else {
 				startyearvalue++;
 				startmonthvalue = 1;
 				startyearmonthvalue = Integer.parseInt(startyearvalue + "0" + startmonthvalue);
 			}
-			
 			totpage++;
 		}
 		
@@ -133,7 +128,6 @@ public class CalendarDAO {
 			previous_page = "<img src='image/button-left.jpg'>";
 		}
 
-		
 		// Next 표시부분
 		if (nowpage < totpage) {
 			String addtag = "";
@@ -150,7 +144,6 @@ public class CalendarDAO {
 				nextendmonthdate = nextyearmonth + date;
 			}
 			
-			
 			if (nowpage + 1 == totpage) {
 				addtag = "?start_date=" + start_date + "&end_date=" + end_date 
 						+ "&nowpage=" + (nowpage + 1) + "&nowyearmonth=" + nextyearmonth 
@@ -164,11 +157,9 @@ public class CalendarDAO {
 		} else {
 			next_page = " <img src='image/button-right.jpg'>";
 		}
-
 		String outHtml = previous_page + next_page; // Html 문 조합
 		return outHtml;
 	}
-
 	
 	// 처음 출력시 이전 다음 버튼 출력
 	public String pageList() {
@@ -256,7 +247,6 @@ public class CalendarDAO {
 
 				datelist.add(datevo);
 				
-				
 				if (day == 6) {
 					day = 0;
 				} else {
@@ -277,7 +267,6 @@ public class CalendarDAO {
 							} else {
 								month++;
 							}
-
 						}
 					} else {
 						if (year == endyear) {
@@ -296,7 +285,6 @@ public class CalendarDAO {
 					}
 					maxdate = setLastDate(endyear, endmonth, enddate, year, month, monthset);
 				}
-
 			}
 		}
 		return datelist;
@@ -335,11 +323,9 @@ public class CalendarDAO {
 			weekdatelist.add(datevo);
 
 			startweek++;
-
 		}
 
 		while (listcount < datelist.size()) {
-			
 			if (flag) {
 				day = datelist.get(listcount).getSample_day();
 
@@ -399,7 +385,5 @@ public class CalendarDAO {
 			}
 		}
 		return weekdatelist;
-
 	}
-	
 }
