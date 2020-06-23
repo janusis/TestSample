@@ -16,14 +16,14 @@
 	CalendarDAO calendardao = new CalendarDAO();
 	List<DateVO> datelist = new ArrayList<DateVO>();
 	List<DateVO> weekdatelist = new ArrayList<DateVO>();
-	if (request.getParameter("start_date") != null || start_date != "") {
+	if (request.getParameter("start_date") != null) {
 		start_date = request.getParameter("start_date").replace("-","");
 	}
-	if (request.getParameter("end_date") != null || end_date != "") {
+	if (request.getParameter("end_date") != null) {
 		end_date = request.getParameter("end_date").replace("-","");
 		
-		if((request.getParameter("startmonthdate") != null || startmonthdate != "")
-				&& request.getParameter("endmonthdate") != null || endmonthdate != ""){
+		if((request.getParameter("startmonthdate") != null)
+				&& request.getParameter("endmonthdate") != null){
 			startmonthdate = request.getParameter("startmonthdate");
 			endmonthdate = request.getParameter("endmonthdate");
 			datelist =  calendardao.dateList(startmonthdate, endmonthdate);
@@ -233,12 +233,13 @@ html, body {
 		<div>
 			<form name="" method="" action="">
 				<p id="date">0000년 00월 00일</p>
-				<input type="hidden" name="start_date" value="" onclick="">
-				<input type="hidden" name="end_date" value="" onclick="">
-				<input type="hidden" name="nowpage" value="" onclick="">
-				<input type="hidden" name="nowyearmonth" value="" onclick="">
-				<input type="hidden" name="startmonthdate" value="" onclick="">
-				<input type="hidden" name="endmonthdate" value="" onclick="">
+				<input type="hidden" name="start_date" value="">
+				<input type="hidden" name="end_date" value="">
+				<input type="hidden" name="nowpage" value="">
+				<input type="hidden" name="nowyearmonth" value="">
+				<input type="hidden" name="startmonthdate" value="">
+				<input type="hidden" name="endmonthdate" value="">
+				<input type="hidden" name="print_list" value="">
 				<input type="button" value="적용" onclick="" id="button">
 			</form>
 		</div>
