@@ -68,7 +68,7 @@ public class CalendarDAO {
 
 	
 	
-	
+	//전달 다음달 버튼 출력
 	public String pageList(int nowpage, String start_date, String end_date, String nowyearmonth) {
 		int startyear = Integer.parseInt(start_date.substring(0, 4));
 		int startmonth = Integer.parseInt(start_date.substring(4, 6));
@@ -170,12 +170,12 @@ public class CalendarDAO {
 	}
 
 	
-	
+	// 처음 출력시 이전 다음 버튼 출력
 	public String pageList() {
 		return "<img src='image/button-left.jpg'>" + " <img src='image/button-right.jpg'>";
 	}
 	
-	
+	//시작날과 종료날까지의 날짜 계산 후 리스트로 리턴
 	public List<DateVO> dateList(String start_date, String end_date) {
 		int startyear = Integer.parseInt(start_date.substring(0, 4));
 		int startmonth = Integer.parseInt(start_date.substring(4, 6));
@@ -302,7 +302,7 @@ public class CalendarDAO {
 		return datelist;
 	}
 
-	
+	//날짜들을 일주일 단위로 잘라서 리스트에 담아 리턴
 	public List<DateVO> getWeekDate(List<DateVO> datelist) {
 		List<DateVO> weekdatelist = new ArrayList<DateVO>();
 		DateVO datevo = new DateVO();
