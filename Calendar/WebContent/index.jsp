@@ -79,33 +79,27 @@ html, body {
 	width: 100%;
 	height: 100%;
 }
-
 .body-whole {
 	
 }
-
 .top {
 	width: 100%;
 }
-
 .top tr td {
 	height: 20px;
 }
-
 .body-left {
 	width: 45%;
 	height: 800px;
 	float: left;
 	padding: 10px;
 }
-
 .body-right {
 	width: 45%;
 	height: 800px;
 	float: right;
 	padding: 10px;
 }
-
 .title {
 	text-align: center;
 }
@@ -114,6 +108,7 @@ html, body {
 	margin: 0 auto;
 }
 .calendar th {
+	background-color: light-grey;
 	border: 1px solid #000;
 	width: 115px;
 	height: 40px;
@@ -124,26 +119,23 @@ html, body {
 	height: 70px;
 	text-align: center;
 }
-
 .list {
 	margin: 0 auto;
 }
-
 .list th, td {
 	height: 20px;
 	width: 150px;
 	border: 1px solid #000;
 }
-.arrow table{
+.arrow p{
+	padding: 20px;
 	text-align: center;
 	margin: 0 auto;
 }
-
 #button {
 	width: 100px;
 	float: right;
 }
-
 #date {
 	text-align: center;
 }
@@ -156,9 +148,9 @@ html, body {
 		<div>
 			<form name="search" method="post" action="index.jsp">
 				&nbsp;&nbsp; 
-				<input type="" value="기간" readOnly> 
+				<input type="" value="기간" readOnly size="2"> 
 				<input type="date" name="start_date" min="1900-01-01" required pattern="\d{4}-\d{2}-\d{2}"> ~ 
-				<input type="date" name="end_date" max="2100-12-31" required pattern="\d{4}-\d{2}-\d{2}">&nbsp;&nbsp;
+				<input type="date" name="end_date" max="2100-12-31" required pattern="\d{4}-\d{2}-\d{2}">
 				<input type="button" value="조회" id="button" onClick="searchDate();">
 			</form>
 			<div class="title">
@@ -224,11 +216,7 @@ html, body {
 			</table>
 		</div>
 		<div class="arrow">
-			<table>
-				<tr>
-					<td><p><%= pageskip %></p></td>
-				</tr>
-			</table>
+			<p><%= pageskip %></p>
 		</div>
 		<div>
 			<form name="" method="" action="">
@@ -295,7 +283,7 @@ html, body {
 	}
 	
 	
-
+	/*
 	function count_ckeck(object) {
 		var check = document.getElementsByName("check");
 
@@ -314,4 +302,5 @@ html, body {
 			return false;
 		}
 	}
+	*/
 </script>
